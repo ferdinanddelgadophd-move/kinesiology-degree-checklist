@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Kinesiology Degree Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F8F6; --surface:#FFFFFF; --ink:#17231D; --muted:#5B6B63; --line:#D7DFDA;
+  --green:#1D5A3F; --green-soft:#E2EEE7; --on-green:#FFFFFF;
+  --gold:#A9821A; --gold-fill:#D9B44A; --gold-soft:#F7EFD6;
+  --warn:#8E520A; --danger:#A23B2A; --track:#E6EBE8;
+  --cond:'Barlow Condensed','Arial Narrow','Roboto Condensed',sans-serif;
+  --body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111915; --surface:#18231E; --ink:#E5ECE8; --muted:#9BAEA4; --line:#2C3B34;
+    --green:#74C79E; --green-soft:#1D3529; --on-green:#0E2118;
+    --gold:#E0BA4F; --gold-fill:#C9A43C; --gold-soft:#3A311A;
+    --warn:#E8A95E; --danger:#EC8B78; --track:#23302A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111915; --surface:#18231E; --ink:#E5ECE8; --muted:#9BAEA4; --line:#2C3B34;
+  --green:#74C79E; --green-soft:#1D3529; --on-green:#0E2118;
+  --gold:#E0BA4F; --gold-fill:#C9A43C; --gold-soft:#3A311A;
+  --warn:#E8A95E; --danger:#EC8B78; --track:#23302A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:auto;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);-webkit-text-size-adjust:100%}
+img{max-width:100%}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold-fill);outline-offset:2px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Header */
+.top{padding-top:28px;padding-bottom:8px}
+.brand{font-family:var(--cond);font-weight:600;font-size:1.05rem;color:var(--green);letter-spacing:.01em}
+h1{font-family:var(--cond);font-weight:700;font-size:clamp(2.3rem,6.5vw,3.6rem);line-height:.95;margin:.15em 0 .25em;letter-spacing:-.01em}
+.lede{max-width:62ch;color:var(--muted);margin:0 0 18px}
+.profile{display:grid;grid-template-columns:1.3fr 2fr 1fr 1fr;gap:12px;align-items:end}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--muted);font-weight:500}
+.field input,.field select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:1rem;color:var(--ink);min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg label{flex:1;position:relative;text-align:center;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;padding:9px 6px;font-weight:600;color:var(--ink);font-size:.95rem;line-height:1.25}
+.seg label+label span{border-left:1px solid var(--line)}
+.seg input:checked+span{background:var(--green);color:var(--on-green)}
+.seg input:focus-visible+span{outline:3px solid var(--gold-fill);outline-offset:-3px}
+
+/* Scoreboard */
+.score{padding-top:22px;padding-bottom:6px}
+.total{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:12px}
+.big{font-family:var(--cond);font-weight:700;font-size:clamp(3.4rem,11vw,5.2rem);line-height:.85;color:var(--green);font-variant-numeric:tabular-nums}
+.of{font-family:var(--cond);font-weight:600;font-size:clamp(1.3rem,3.6vw,1.75rem);line-height:1.1}
+.total .sub{color:var(--muted);flex-basis:100%;font-size:.95rem}
+.ledger{display:flex;gap:4px;height:34px}
+.lseg{display:flex;background:var(--track);border-radius:5px;overflow:hidden;min-width:0}
+.lfill{height:100%;transition:width .35s ease}
+.lfill.d{background:var(--green)}
+.lfill.p{background:repeating-linear-gradient(135deg,var(--gold-fill) 0 6px,var(--gold-soft) 6px 11px)}
+.legend{display:flex;gap:4px;margin-top:8px}
+.legend div{min-width:0;font-size:.85rem;line-height:1.3}
+.legend b{display:block;font-family:var(--cond);font-weight:600;font-size:1rem;color:var(--ink)}
+.legend span{color:var(--muted)}
+.keys{display:flex;gap:16px;font-size:.82rem;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.keys i{display:inline-block;width:14px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+.keys .kd{background:var(--green)} .keys .kp{background:repeating-linear-gradient(135deg,var(--gold-fill) 0 4px,var(--gold-soft) 4px 7px)} .keys .kn{background:var(--track)}
+
+/* Tools */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.saved{font-size:.9rem;color:var(--muted)}
+.saved.bad{color:var(--danger);font-weight:600}
+.tbtns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 13px;font-weight:600;cursor:pointer;font-size:.92rem}
+.btn:hover{border-color:var(--green)}
+.btn.primary{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.btn.danger{color:var(--danger)}
+.btn.danger.armed{background:var(--danger);color:#fff;border-color:var(--danger)}
+.backup{margin-top:10px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.backup p{margin:0 0 10px;color:var(--muted);font-size:.93rem;max-width:70ch}
+.backup .brow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.backup textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--bg);font-size:.82rem}
+.msg{font-size:.9rem;margin-top:8px;color:var(--green);font-weight:600}
+.msg.err{color:var(--danger)}
+
+/* What's left */
+.leftbox{margin-top:22px;border:2px solid var(--green);border-radius:12px;background:var(--surface)}
+.leftbox>summary{cursor:pointer;list-style:none;padding:14px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.leftbox>summary::-webkit-details-marker{display:none}
+.leftbox h2{font-family:var(--cond);font-weight:700;font-size:1.6rem;margin:0;line-height:1}
+.leftbox .tog{font-size:.88rem;color:var(--muted)}
+.leftbox[open] .tog .c{display:none} .leftbox:not([open]) .tog .o{display:none}
+.leftin{padding:0 18px 16px}
+.lgroup{padding:10px 0;border-top:1px solid var(--line)}
+.lgroup h3{font-family:var(--cond);font-weight:600;font-size:1.1rem;margin:0 0 6px}
+.lgroup p{margin:0;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:4px 9px;font-size:.88rem;cursor:pointer;text-align:left;line-height:1.3}
+.chip:hover{border-color:var(--green)}
+.chip b{font-family:var(--cond);font-weight:600;font-size:.98rem}
+.chip.ip{background:var(--gold-soft);border-color:var(--gold-fill)}
+.chip em{font-style:normal;color:var(--warn);font-size:.8rem;margin-left:4px}
+.alldone{color:var(--green);font-weight:600}
+.overall{margin:4px 0 0;font-weight:600}
+
+/* Sticky nav */
+.nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:24px;padding-top:env(safe-area-inset-top,0px)}
+.navin{display:flex;align-items:center;gap:10px;justify-content:space-between;padding-top:8px;padding-bottom:8px;overflow-x:auto}
+.jump{display:flex;gap:4px;flex-shrink:0}
+.jump a{font-family:var(--cond);font-weight:600;font-size:1rem;color:var(--ink);text-decoration:none;padding:6px 9px;border-radius:6px;white-space:nowrap}
+.jump a:hover{background:var(--green-soft)}
+.filter{flex-shrink:0;min-width:250px}
+.filter span{padding:6px 10px;font-size:.88rem;white-space:nowrap}
+
+/* Sections */
+.sec{padding-top:30px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;border-bottom:3px solid var(--green);padding-bottom:6px}
+.sec-head h2{font-family:var(--cond);font-weight:700;font-size:clamp(1.7rem,4.5vw,2.2rem);margin:0;line-height:1.05}
+.prog{font-weight:600;color:var(--green);font-variant-numeric:tabular-nums}
+.prog small{color:var(--muted);font-weight:500;font-size:.9rem}
+.sec-note{color:var(--muted);font-size:.93rem;margin:8px 0 0;max-width:75ch}
+.group{margin-top:16px}
+.group h3{font-family:var(--cond);font-weight:600;font-size:1.15rem;margin:0 0 6px;display:flex;justify-content:space-between;gap:10px}
+.group h3 span{color:var(--muted);font-weight:500;font-size:.95rem}
+.emptymsg{display:none;color:var(--muted);font-size:.93rem;padding:10px 0}
+[data-filter="left"] .group.allmet{display:none}
+[data-filter="left"] .sec.allmet .emptymsg{display:block}
+[data-filter="done"] .group.nonemet{display:none}
+
+ul.rows{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.row{display:grid;grid-template-columns:46px minmax(0,1fr) 52px auto;gap:4px 10px;align-items:start;padding:11px 12px 11px 6px;border-top:1px solid var(--line);position:relative}
+.row:first-child{border-top:0}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent}
+.row.s-ip::before{background:var(--gold-fill)}
+.row.s-done,.row.s-waived{background:var(--green-soft)}
+.row.s-done::before,.row.s-waived::before{background:var(--green)}
+[data-filter="left"] .row.met{display:none}
+[data-filter="done"] .row:not(.met){display:none}
+.chk-wrap{display:flex;justify-content:center;padding-top:1px;cursor:pointer;position:relative}
+.chk{position:absolute;opacity:0;width:30px;height:30px;margin:0;cursor:pointer}
+.box{width:26px;height:26px;border:2px solid var(--muted);border-radius:6px;display:grid;place-items:center;background:var(--surface);transition:background .15s}
+.box::after{content:"";width:7px;height:13px;border:solid var(--on-green);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px);opacity:0}
+.chk:checked+.box{background:var(--green);border-color:var(--green)}
+.chk:checked+.box::after{opacity:1}
+.chk:focus-visible+.box{outline:3px solid var(--gold-fill);outline-offset:2px}
+.row.s-planned .box{border-style:dashed;border-color:var(--green)}
+.row.s-ip .box{border-color:var(--gold-fill);background:var(--gold-soft)}
+.row.s-waived .box{background:var(--green);border-color:var(--green)}
+.name{line-height:1.3}
+.code{font-family:var(--cond);font-weight:700;font-size:1.12rem;color:var(--green);margin-right:4px}
+.title{font-weight:500}
+.badge{display:inline-block;margin-left:6px;font-size:.75rem;font-weight:600;padding:1px 7px;border-radius:20px;background:var(--gold-soft);color:var(--warn);vertical-align:2px}
+.meta{font-size:.84rem;color:var(--muted);margin-top:3px}
+.meta .ok{color:var(--green);font-weight:600}
+.meta .tm{color:var(--ink);font-weight:600}
+.warn{font-size:.84rem;color:var(--warn);margin-top:4px;font-weight:600}
+.warn.bad{color:var(--danger)}
+.opt{margin-top:6px;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:var(--surface);max-width:100%;font-size:.9rem}
+.cr{font-family:var(--cond);font-weight:600;font-size:1.05rem;text-align:right;padding-top:1px;white-space:nowrap}
+.ctl{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ctl select{border:1px solid var(--line);border-radius:6px;padding:5px 6px;background:var(--surface);font-size:.88rem;max-width:130px}
+.ctl select.status{font-weight:600}
+.row.s-done select.status,.row.s-waived select.status{color:var(--green);border-color:var(--green)}
+.row.s-ip select.status{color:var(--warn);border-color:var(--gold-fill)}
+.more,.del{border:1px solid var(--line);background:transparent;border-radius:6px;padding:5px 8px;font-size:.84rem;cursor:pointer;color:var(--muted)}
+.more.has{color:var(--green);border-color:var(--green);font-weight:600}
+.del{color:var(--danger)}
+.details{grid-column:2 / -1;display:grid;grid-template-columns:180px 1fr;gap:10px;padding:8px 0 2px}
+.details[hidden]{display:none}
+.details label{display:flex;flex-direction:column;gap:3px;font-size:.82rem;color:var(--muted);font-weight:500}
+.details input,.details textarea{border:1px solid var(--line);border-radius:6px;padding:7px 9px;background:var(--surface);font-size:.95rem;resize:vertical}
+.row.locked{opacity:.6}
+.row.locked .ctl,.row.locked .chk-wrap{pointer-events:none}
+
+.freestats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.fs{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.fs b{font-family:var(--cond);font-size:1.6rem;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums}
+.fs span{color:var(--muted);font-size:.9rem}
+.fbar{height:8px;border-radius:4px;background:var(--track);margin-top:8px;overflow:hidden;display:flex}
+.fbar i{display:block;height:100%;background:var(--green)}
+.fbar i.p{background:var(--gold-fill)}
+.add{display:grid;grid-template-columns:130px 1fr 90px auto;gap:8px;margin-top:12px;align-items:end}
+.add label{display:flex;flex-direction:column;gap:3px;font-size:.82rem;color:var(--muted);font-weight:500}
+.add input{border:1px solid var(--line);border-radius:6px;padding:8px 9px;background:var(--surface);font-size:.95rem;min-width:0}
+.noextra{padding:14px;color:var(--muted);font-size:.93rem}
+.notes textarea{width:100%;min-height:140px;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface);margin-top:12px;font-size:1rem;resize:vertical}
+footer{margin-top:40px;padding:22px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+footer p{margin:.3em 0;max-width:75ch}
+.flash{animation:fl 1.4s ease}
+@keyframes fl{0%,40%{box-shadow:inset 0 0 0 3px var(--gold-fill)}100%{box-shadow:inset 0 0 0 3px transparent}}
+
+@media (max-width:760px){
+  .profile{grid-template-columns:1fr 1fr}
+  .profile .f-name,.profile .f-track{grid-column:1 / -1}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .legend div{flex:none !important}
+  .row{grid-template-columns:42px minmax(0,1fr) auto}
+  .cr{grid-column:3;grid-row:1}
+  .ctl{grid-column:2 / -1;justify-content:flex-start}
+  .details{grid-template-columns:1fr}
+  .add{grid-template-columns:1fr 1fr}
+  .add .a-title{grid-column:1 / -1;grid-row:2}
+  .add .a-btn{grid-column:1 / -1}
+  .freestats{grid-template-columns:1fr}
+  .filter{min-width:220px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+@media print{
+  :root{--bg:#fff;--surface:#fff}
+  .nav,.tools,.backup,.more,.del,.add,.leftbox .tog{display:none !important}
+  .row{break-inside:avoid}
+  [data-filter] .row,[data-filter] .group{display:grid !important}
+  [data-filter] .group{display:block !important}
+  .details.filled{display:grid !important}
+  .details:not(.filled){display:none !important}
+  .sec{break-inside:auto}
+  .leftbox{border-width:1px}
+}
+</style>
+</head>
+<body data-filter="all">
+
+<header class="top wrap">
+  <div class="brand">Wilberforce University, B.S. in Kinesiology</div>
+  <h1>My degree checklist</h1>
+  <p class="lede">Check off each course you finish, add your grade and term, and watch what is left shrink. Bring this to every advising meeting.</p>
+  <div class="profile">
+    <label class="field f-name">Your name<input id="pName" autocomplete="name" placeholder="First and last name"></label>
+    <div class="field f-track"><span id="trackLbl">Your track</span>
+      <div class="seg" role="radiogroup" aria-labelledby="trackLbl">
+        <label><input type="radio" name="track" value="PT"><span>Physical Therapy</span></label>
+        <label><input type="radio" name="track" value="OT"><span>Occupational Therapy</span></label>
+        <label><input type="radio" name="track" value="ESS"><span>Exercise and Sport Science</span></label>
+      </div>
+    </div>
+    <label class="field">Plan<select id="pPlan"><option value="4">4-year plan</option><option value="3">3-year plan</option></select></label>
+    <label class="field">Expected graduation<input id="pGrad" placeholder="Spring 2030"></label>
+  </div>
+
+  <div class="tools">
+    <div class="saved" id="saved" aria-live="polite">Your checklist saves in this browser as you go.</div>
+    <div class="tbtns">
+      <button type="button" class="btn" id="bBackup" aria-expanded="false">Backup and restore</button>
+      <button type="button" class="btn" id="bPrint">Print or save as PDF</button>
+    </div>
+  </div>
+  <div class="backup" id="backup" hidden>
+    <p>Your checklist lives in this browser on this device. If you clear your browser data or switch devices, it will not follow you. Make a backup now and then, and load it on any other device.</p>
+    <div class="brow">
+      <button type="button" class="btn primary" id="bDownload" hidden>Download backup file</button>
+      <button type="button" class="btn" id="bCopy">Copy backup code</button>
+      <label class="btn" for="fileIn">Load a backup file</label>
+      <input type="file" id="fileIn" accept=".json,application/json,text/plain" class="sr">
+    </div>
+    <textarea id="codeBox" aria-label="Backup code" placeholder="Paste a backup code here to restore it"></textarea>
+    <div class="brow" style="margin-top:8px;margin-bottom:0">
+      <button type="button" class="btn" id="bRestore">Restore from pasted code</button>
+      <button type="button" class="btn danger" id="bReset">Clear my checklist</button>
+    </div>
+    <div class="msg" id="bMsg" aria-live="polite"></div>
+  </div>
+</header>
+
+<section class="score wrap" aria-label="Credit progress">
+  <div class="total"><span class="big" id="tDone">0</span><span class="of">of 120 credits done</span><span class="sub" id="tSub"></span></div>
+  <div class="ledger" id="ledger" role="img"></div>
+  <div class="legend" id="legend"></div>
+  <div class="keys"><span><i class="kd"></i>Done</span><span><i class="kp"></i>In progress</span><span><i class="kn"></i>Still to take</span></div>
+
+  <details class="leftbox" open>
+    <summary><h2>What's left</h2><span class="tog"><span class="o">Hide</span><span class="c">Show</span></span></summary>
+    <div class="leftin" id="leftList"></div>
+  </details>
+</section>
+
+<nav class="nav" aria-label="Sections">
+  <div class="navin wrap">
+    <div class="jump">
+      <a href="#sec-gened">Gen Ed</a><a href="#sec-core">KNE core</a><a href="#sec-elec">KNE electives</a><a href="#sec-sci">Core sciences</a><a href="#sec-free">Free electives</a><a href="#sec-notes">Notes</a>
+    </div>
+    <div class="seg filter" role="radiogroup" aria-label="Show courses">
+      <label><input type="radio" name="filter" value="all" checked><span>All</span></label>
+      <label><input type="radio" name="filter" value="left"><span>Remaining</span></label>
+      <label><input type="radio" name="filter" value="done"><span>Done</span></label>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  <p>This checklist is a planning tool for 2026-2027 registration. Your official degree audit comes from the Registrar's Office, and only the Department Chair and Registrar can approve substitutions or waivers.</p>
+  <p>Each PT and OT program sets its own prerequisites, so check the schools you plan to apply to. Questions? fdelgado@wilberforce.edu</p>
+</footer>
+
+<datalist id="terms"></datalist>
+
+<script>
+(function(){
+"use strict";
+var KEY = "wu-kne-checklist-v1";
+
+/* ---------- Course data ---------- */
+var C = {};
+function def(id, code, title, cr, extra){ C[id] = Object.assign({id:id, code:code, title:title, cr:cr}, extra || {}); }
+
+// General Education
+def("AH115","A&H 115","Introduction to Humanities",3);
+def("LIT264","LIT 264 or 265","Literature of African Americans",3);
+def("PR230","P&R 230 or 246","The African American Church, or Ethics",3,{options:[["P&R 230","The African American Church"],["P&R 246","Ethics"]]});
+def("HST225","HST 225","African American History",3);
+def("BIO120","BIO 120","General Biology I with Lab",4);
+def("MAT113","MAT 113","College Algebra",3);
+def("ENG111","ENG 111","Composition I",3);
+def("ENG112","ENG 112","Literary Studies and Writing for Research",3);
+def("COM245","COM 245","Public Speaking",3);
+def("ENTR111","ENTR 111","Introduction to Entrepreneurship",3);
+def("PSY120","PSY 120","General Psychology",3);
+def("HPE155","HPE 155","First Aid",1);
+def("FRS110","FRS 110","Orientation to College Readiness",1);
+def("ISM111","ISM 111","Computer Literacy Lab",2);
+def("TSD111","TSD 111","Total Student Development FR1",0.5);
+def("TSD112","TSD 112","Total Student Development FR2",0.5);
+def("TSD211","TSD 211","Total Student Development SO1",0.5);
+def("TSD212","TSD 212","The Reimagined Self",0.5);
+
+var GENED = [
+  ["A","Humanities and Global Perspectives",["AH115","LIT264","PR230"]],
+  ["B","Historical Perspectives",["HST225"]],
+  ["C","Natural Sciences and Health",["BIO120"]],
+  ["D","Mathematics",["MAT113"]],
+  ["E","Reasoning and Discovery",["ENG111","ENG112","COM245"]],
+  ["F","Social and Behavioral Science",["ENTR111","PSY120"]],
+  ["G","Health and Physical Education",["HPE155"]],
+  ["H","Freshman Studies",["FRS110","ISM111","TSD111","TSD112","TSD211","TSD212"]]
+];
+
+// Kinesiology core
+def("KNE120","KNE 120","Introduction to Kinesiology",3);
+def("KNE240","KNE 240","Motor Learning and Control",3);
+def("BIO421","BIO 421","Human Anatomy and Physiology I with Lab",4);
+def("KNE260","KNE 260","Exercise Physiology",3);
+def("KNE280","KNE 280","Biomechanics of Human Movement",3);
+def("NUT","BIO 222, KNE 253, or KNE 265","Nutrition, choose one",3,{placeholder:true,options:[["BIO 222","Intro to Food Science and Human Nutrition"],["KNE 253","Nutrition for Healthcare Professionals"],["KNE 265","Sports Nutrition"]]});
+def("KNE150","KNE 150","Exercise Prescription and Programming",3);
+def("KNE470","KNE 470","Capstone Project or Research",3);
+var CORE = ["KNE120","KNE240","BIO421","KNE260","KNE280","NUT","KNE150","KNE470"];
+
+// Kinesiology electives
+def("BIO422","BIO 422","Human Anatomy and Physiology II",3);
+def("KNE210","KNE 210","Introduction to Sports Management",3);
+def("KNE246","KNE 246","Ethics in Health and Kinesiology",3);
+def("KNE250","KNE 250","Sports Psychology",3);
+def("KNE253","KNE 253","Nutrition for Healthcare Professionals",3);
+def("KNE261","KNE 261","Theory and Practice of Coaching",3);
+def("KNE265","KNE 265","Sports Nutrition",3);
+def("KNE312","KNE 312","Sociocultural Dimensions of Physical Activity",3);
+def("KNE320","KNE 320","Dynamics of Strength Training",3);
+def("KNE340","KNE 340","Prevention and Care of Athletic Injuries",3);
+def("KNE350","KNE 350","Internship / Field Experience I",3);
+def("KNE420","KNE 420","Exercise for Special Populations",3);
+def("KNE421","KNE 421","Neuromuscular Physiology",3);
+def("KNE450","KNE 450","Internship / Field Experience II",3);
+def("KNE480","KNE 480","Special Problems",3);
+def("KNE499","KNE 499","Senior Seminar in Kinesiology",3);
+def("PSY124","PSY 124","Human Growth and Development",3);
+def("PSY352","PSY 352","Human Motivation and Learning",3);
+def("PSY353","PSY 353","Principles of Counseling",3);
+def("PSY475","PSY 475","Physiology Psychology",3);
+def("REH110","REH 110","Introduction to Rehabilitation",3);
+var ELECTIVES = ["BIO422","KNE210","KNE246","KNE250","KNE253","KNE261","KNE265","KNE312","KNE320","KNE340","KNE350","KNE420","KNE421","KNE450","KNE480","KNE499","PSY124","PSY352","PSY353","PSY475","REH110"];
+var ELECTIVES_NEEDED = 9;
+
+// Core sciences and track courses
+def("BIO122","BIO 122","General Biology II",4);
+def("CHE131","CHE 131","General Chemistry I",3);
+def("CHE131L","CHE 131L","General Chemistry I Lab",1);
+def("CHE132","CHE 132","General Chemistry II",3);
+def("CHE132L","CHE 132L","General Chemistry II Lab",1);
+def("PSC241","PSC 241","General Physics I",3);
+def("PSC241L","PSC 241L","General Physics I Lab",1);
+def("PSC242","PSC 242","General Physics II",3);
+def("PSC242L","PSC 242L","General Physics II Lab",1);
+def("STAT231","STAT 231","Statistics I",3);
+def("HSA120","HSA 120","Medical Terminology",3);
+def("PSY351","PSY 351","Abnormal Psychology",3);
+def("SOC135","SOC 135","Intro to Sociology (or a Cultural Anthropology course)",3);
+
+var TRACKS = {
+  PT:{name:"Physical Therapy", short:"PT",
+      sci:["BIO122","CHE131","CHE131L","CHE132","CHE132L","PSC241","PSC241L","PSC242","PSC242L","STAT231","HSA120"],
+      rec:[], recNote:"",
+      suggest:["BIO 422","PSY 124","KNE 350","KNE 340","KNE 320","PSY 352"],
+      note:"These cover the common PT school prerequisites. They count toward your free electives. BIO 422 Human Anatomy and Physiology II and PSY 124 Human Growth and Development are also common PT prerequisites, and you take them as Kinesiology electives."},
+  OT:{name:"Occupational Therapy", short:"OT",
+      sci:["CHE131","CHE131L","PSC241","PSC241L","STAT231","HSA120"],
+      rec:["PSY351","SOC135","BIO122"],
+      recNote:"OT programs usually ask for these. They are recommended, not required for your degree, and count toward your free electives. BIO 122 General Biology II is only needed for some OT programs.",
+      suggest:["BIO 422","PSY 124"],
+      note:"These count toward your free electives. BIO 422 Human Anatomy and Physiology II and PSY 124 Human Growth and Development are common OT prerequisites, and you take them as Kinesiology electives."},
+  ESS:{name:"Exercise and Sport Science", short:"Exercise and Sport Science",
+      sci:["CHE131","CHE131L","PSC241","PSC241L","STAT231"],
+      rec:[], recNote:"", suggest:[],
+      note:"These count toward your free electives. Thinking about PT later? Decide by the end of Year 2 and use free electives for BIO 122 General Biology II, CHE 132 with lab, PSC 242 with lab, and BIO 422 Human Anatomy and Physiology II."}
+};
+
+// Prerequisites and usual term, keyed by course code
+var META = {
+  "BIO 122":{pre:["BIO 120"]}, "BIO 421":{pre:["BIO 120"]}, "BIO 422":{pre:["BIO 421"]},
+  "CHE 131":{pre:["MAT 113"]}, "CHE 131L":{note:"Take with CHE 131 General Chemistry I"},
+  "CHE 132":{pre:["CHE 131"]}, "CHE 132L":{note:"Take with CHE 132 General Chemistry II"},
+  "ENG 112":{pre:["ENG 111"]},
+  "KNE 120":{off:"fall"}, "KNE 150":{pre:["KNE 260","KNE 280"],off:"fall"},
+  "KNE 240":{off:"spring"}, "KNE 253":{off:"fall"},
+  "KNE 260":{pre:["BIO 421"],off:"spring"}, "KNE 261":{off:"spring"},
+  "KNE 280":{pre:["BIO 421"],note:"PSC 241 General Physics I is recommended first",off:"spring"},
+  "KNE 320":{pre:["KNE 260","KNE 280"],off:"spring"}, "KNE 340":{off:"spring"},
+  "KNE 350":{off:"fall and spring"}, "KNE 420":{pre:["KNE 150"],off:"fall"},
+  "KNE 421":{pre:["BIO 421"]}, "KNE 450":{note:"Needs 24 KNE credits first"},
+  "KNE 470":{pre:["STAT 231"],note:"and your other core courses",off:"spring"},
+  "KNE 499":{note:"Needs 24 KNE credits first"},
+  "PSC 241":{pre:["MAT 113"]}, "PSC 241L":{note:"Take with PSC 241 General Physics I"},
+  "PSC 242":{pre:["PSC 241"]}, "PSC 242L":{note:"Take with PSC 242 General Physics II"},
+  "PSY 120":{off:"fall, spring, winter, and summer"},
+  "PSY 124":{pre:["PSY 120"],note:"or instructor approval",off:"spring"},
+  "PSY 351":{pre:["PSY 120","PSY 124"],off:"fall"}
+};
+
+var NAMES = {};
+Object.keys(C).forEach(function(id){
+  var d = C[id];
+  if (d.options) d.options.forEach(function(o){ NAMES[o[0]] = o[1]; });
+  else NAMES[d.code] = d.title;
+});
+
+var STATUS = [["none","Not started"],["planned","Planned"],["ip","In progress"],["done","Done"],["waived","Waived"]];
+var GRADES = [["","Grade"],["A","A"],["B","B"],["C","C"],["D","D"],["F","F"],["P","P (pass)"],["K","K (transfer)"],["W","W (withdrew)"]];
+var PASS = {A:1,B:1,C:1,D:1,P:1,K:1};
+
+/* ---------- State ---------- */
+function blank(){ return {v:1, profile:{name:"",track:"PT",plan:"4",grad:""}, courses:{}, extra:[], notes:"", nextX:1}; }
+var state = blank();
+var storageOK = true;
+try {
+  var raw = localStorage.getItem(KEY);
+  if (raw) { var parsed = JSON.parse(raw); if (parsed && parsed.v === 1) state = Object.assign(blank(), parsed); }
+} catch(e) { storageOK = false; }
+if (!TRACKS[state.profile.track]) state.profile.track = "PT";
+
+function getC(id){
+  if (id.indexOf("x_") === 0) { for (var i=0;i<state.extra.length;i++) if (state.extra[i].id === id) return state.extra[i]; return {}; }
+  if (!state.courses[id]) state.courses[id] = {status:"none", grade:"", term:"", note:""};
+  return state.courses[id];
+}
+function peekC(id){
+  if (id.indexOf("x_") === 0) return getC(id);
+  return state.courses[id] || {status:"none"};
+}
+function getDef(id){
+  if (C[id]) return C[id];
+  var x = getC(id);
+  return {id:id, code:x.code||"Course", title:x.title||"", cr:Number(x.cr)||0, extra:true};
+}
+function chosen(id){
+  var d = getDef(id), c = peekC(id);
+  if (d.options && c.choice !== undefined && c.choice !== "" && d.options[c.choice]) return d.options[c.choice];
+  return null;
+}
+function codeOf(id){ var o = chosen(id); return o ? o[0] : getDef(id).code; }
+function titleOf(id){ var o = chosen(id); return o ? o[1] : getDef(id).title; }
+function levelOf(code){ var m = String(code).match(/(\d{3})/); return m ? parseInt(m[1],10) : 0; }
+function stat(id){ return peekC(id).status || "none"; }
+function isMet(s){ return s === "done" || s === "waived"; }
+function fmt(n){ return (Math.round(n*10)/10).toString(); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];}); }
+function withName(code){ return NAMES[code] ? code + " " + NAMES[code] : code; }
+function lockedCode(){ var o = chosen("NUT"); return o && o[0] !== "BIO 222" ? o[0] : null; }
+function isLocked(id){ var lc = lockedCode(); return ELECTIVES.indexOf(id) > -1 && lc && C[id].code === lc; }
+
+/* ---------- Saving ---------- */
+var saveTimer = null;
+function changed(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(save, 300);
+  renderSummary();
+}
+function save(){
+  if (!storageOK) return setSaved();
+  try { state.savedAt = Date.now(); localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch(e){ storageOK = false; }
+  setSaved();
+}
+function setSaved(){
+  var el = document.getElementById("saved");
+  if (!storageOK) { el.className = "saved bad"; el.textContent = "This browser is not saving your checklist. Download or copy a backup before you close the page."; return; }
+  el.className = "saved";
+  if (state.savedAt) {
+    var d = new Date(state.savedAt);
+    el.textContent = "Saved in this browser at " + d.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) + " on " + d.toLocaleDateString([], {month:"short", day:"numeric"}) + ".";
+  } else el.textContent = "Your checklist saves in this browser as you go.";
+}
+
+/* ---------- Rendering ---------- */
+function optionHTML(list, val){
+  return list.map(function(o){ return '<option value="'+o[0]+'"'+(String(val)===String(o[0])?" selected":"")+'>'+esc(o[1])+'</option>'; }).join("");
+}
+function rowHTML(id, badge){
+  var d = getDef(id), c = getC(id);
+  var opts = "";
+  if (d.options) {
+    opts = '<select class="opt" aria-label="Which course did you take for '+esc(d.code)+'">' +
+      (d.placeholder ? '<option value="">Choose which course</option>' : "") +
+      d.options.map(function(o,i){ return '<option value="'+i+'"'+(String(c.choice)===String(i)?" selected":"")+'>'+esc(o[0]+" "+o[1])+'</option>'; }).join("") +
+      '</select>';
+  }
+  return '<li class="row" data-id="'+id+'" id="row-'+id+'">' +
+    '<label class="chk-wrap"><input type="checkbox" class="chk"><span class="box" aria-hidden="true"></span><span class="sr">Mark '+esc(d.code)+' done</span></label>' +
+    '<div class="main"><div class="name"><span class="code"></span> <span class="title"></span>'+(badge?'<span class="badge">'+esc(badge)+'</span>':"")+'</div>'+opts+'<div class="meta"></div><div class="warn" hidden></div></div>' +
+    '<div class="cr">'+fmt(d.cr)+' cr</div>' +
+    '<div class="ctl"><select class="status" aria-label="Status for '+esc(d.code)+'">'+optionHTML(STATUS,"none")+'</select>' +
+    '<select class="grade" aria-label="Grade for '+esc(d.code)+'">'+optionHTML(GRADES,"")+'</select>' +
+    '<button type="button" class="more" aria-expanded="false">Term and notes</button>' +
+    (d.extra ? '<button type="button" class="del">Remove</button>' : "") + '</div>' +
+    '<div class="details" hidden><label>Term<input class="term" list="terms" placeholder="Fall 2026" value="'+esc(c.term)+'"></label>' +
+    '<label>Notes<textarea class="note" rows="2" placeholder="Transfer course, substitution, or a question for your advisor">'+esc(c.note)+'</textarea></label></div>' +
+    '</li>';
+}
+function secHead(id, title, note){
+  return '<div class="sec-head"><h2>'+title+'</h2><div class="prog" id="prog-'+id+'"></div></div>' + (note ? '<p class="sec-note">'+note+'</p>' : "");
+}
+function group(title, sub, ids, badgeFn){
+  return '<div class="group"><h3>'+title+(sub?'<span>'+sub+'</span>':"")+'</h3><ul class="rows">' +
+    ids.map(function(id){ return rowHTML(id, badgeFn ? badgeFn(id) : ""); }).join("") + '</ul></div>';
+}
+
+function renderAll(){
+  var t = TRACKS[state.profile.track];
+  var h = "";
+
+  h += '<section class="sec" id="sec-gened">' + secHead("gened","General Education",
+    "39 credits are required. BIO 120 General Biology I is 4 credits in a 3-credit category, so this list adds up to 40.") +
+    '<p class="emptymsg">Every General Education course is checked off.</p>';
+  GENED.forEach(function(g){
+    var hrs = g[2].reduce(function(s,id){ return s + C[id].cr; }, 0);
+    h += group(g[0] + ". " + g[1], (g[0]==="C" ? 3 : hrs) + " credits", g[2]);
+  });
+  h += '</section>';
+
+  h += '<section class="sec" id="sec-core">' + secHead("core","Kinesiology core",
+    "Required for every Kinesiology major, 25 credits. Pick your nutrition course from the menu in that row.") +
+    '<p class="emptymsg">Every core course is checked off.</p>' + group("Required core","25 credits",CORE) + '</section>';
+
+  h += '<section class="sec" id="sec-elec">' + secHead("elec","Kinesiology electives",
+    "Take any 9, 27 credits. KNE 253 and KNE 265 count once, as your core nutrition course or as an elective, not both. Electives past nine count as free electives." +
+    (t.suggest.length ? " Courses marked suggested are what " + t.short + " programs usually want." : "")) +
+    '<p class="emptymsg">You have finished all nine electives.</p>' +
+    group("Elective list","3 credits each",ELECTIVES,function(id){ return t.suggest.indexOf(C[id].code) > -1 ? "Suggested for " + t.short : ""; }) + '</section>';
+
+  h += '<section class="sec" id="sec-sci">' + secHead("sci","Core sciences for the " + t.name + " track", t.note) +
+    '<p class="emptymsg">Every required science is checked off.</p>' +
+    group("Required for this track", fmt(t.sci.reduce(function(s,id){return s+C[id].cr;},0)) + " credits", t.sci);
+  if (t.rec.length) h += '<p class="sec-note">'+t.recNote+'</p>' + group("Recommended for " + t.short + " applicants","",t.rec);
+  h += '</section>';
+
+  h += '<section class="sec" id="sec-free">' + secHead("free","Free electives",
+    "30 credits, with at least 15 at the 200 level or higher. Your core sciences and any Kinesiology electives past nine count here automatically. Add every other course you take below, such as a minor, a language, or transfer credit.") +
+    '<div class="freestats" id="freeStats"></div>' +
+    '<div class="group"><h3>My other courses</h3><ul class="rows" id="extraList">' +
+    (state.extra.length ? state.extra.map(function(x){ return rowHTML(x.id,""); }).join("") : '<li class="noextra">No courses added yet.</li>') +
+    '</ul><div class="add">' +
+    '<label>Course number<input id="aCode" placeholder="SPA 111"></label>' +
+    '<label class="a-title">Course name<input id="aTitle" placeholder="Elementary Spanish I"></label>' +
+    '<label>Credits<input id="aCr" type="number" min="0.5" max="12" step="0.5" value="3"></label>' +
+    '<button type="button" class="btn primary a-btn" id="aBtn">Add course</button></div>' +
+    '<div class="msg err" id="aMsg" aria-live="polite"></div></div></section>';
+
+  h += '<section class="sec notes" id="sec-notes">' + secHead("notes","Notes for my advisor","") +
+    '<textarea id="notes" aria-label="Notes for my advisor" placeholder="Questions to ask, substitutions you requested, plans for next semester">'+esc(state.notes)+'</textarea></section>';
+
+  document.getElementById("main").innerHTML = h;
+  allRowIds().forEach(updateRow);
+  renderSummary();
+}
+
+function allRowIds(){
+  var ids = [];
+  document.querySelectorAll("#main .row").forEach(function(r){ ids.push(r.dataset.id); });
+  return ids;
+}
+
+function doneCodes(){
+  var set = {};
+  Object.keys(C).forEach(function(id){ if (isMet(stat(id))) set[codeOf(id)] = 1; });
+  state.extra.forEach(function(x){ if (isMet(x.status)) set[x.code] = 1; });
+  return set;
+}
+
+function updateRow(id){
+  var row = document.getElementById("row-" + id);
+  if (!row) return;
+  var d = getDef(id), c = getC(id), s = c.status || "none";
+  var locked = isLocked(id);
+  row.className = "row s-" + s + (isMet(s) ? " met" : "") + (locked ? " locked met" : "");
+  row.querySelector(".code").textContent = codeOf(id);
+  row.querySelector(".title").textContent = titleOf(id);
+  var chk = row.querySelector(".chk");
+  chk.checked = isMet(s); chk.disabled = locked;
+  row.querySelector(".status").value = s;
+  row.querySelector(".grade").value = c.grade || "";
+  row.querySelectorAll("select,button,input,textarea").forEach(function(el){ if (!el.classList.contains("more")) el.disabled = locked; });
+
+  // Meta line
+  var meta = META[codeOf(id)] || {};
+  var done = doneCodes();
+  var parts = [];
+  if (locked) parts.push("Counted as your core nutrition course.");
+  else {
+    if (meta.pre) parts.push("Needs " + meta.pre.map(function(p){ return '<span class="'+(done[p]?"ok":"")+'">'+esc(withName(p))+(done[p]?" ✓":"")+'</span>'; }).join(" and ") + " first" + (meta.note && meta.pre ? " (" + esc(meta.note) + ")" : "") + ".");
+    else if (meta.note) parts.push(esc(meta.note) + ".");
+    if (meta.off) parts.push("Usually offered in " + meta.off + ".");
+    if (c.term) parts.push('<span class="tm">' + esc((s === "done" ? "Taken " : s === "waived" ? "Waived " : "Planned for ") + c.term) + '</span>');
+  }
+  var metaEl = row.querySelector(".meta");
+  metaEl.innerHTML = parts.join(" ");
+  metaEl.hidden = !parts.length;
+
+  // Warnings
+  var w = row.querySelector(".warn"), msg = "", bad = false;
+  if (!locked) {
+    if (c.grade === "F" || c.grade === "W") { msg = "An " + c.grade + " does not earn credit. Plan to retake this course."; bad = true; }
+    else if (s === "waived") msg = "A waiver meets the requirement, but you still need these credits from another course to reach 120.";
+    else if (s !== "none" && meta.pre) {
+      var missing = meta.pre.filter(function(p){ return !done[p]; });
+      if (missing.length) msg = "Check your prerequisites. " + missing.map(withName).join(" and ") + (missing.length > 1 ? " are" : " is") + " not checked off yet.";
+    }
+    if (d.options && d.placeholder && c.choice === undefined && isMet(s)) msg = "Choose which nutrition course you took.";
+  }
+  w.textContent = msg; w.hidden = !msg; w.className = "warn" + (bad ? " bad" : "");
+
+  var more = row.querySelector(".more");
+  var filled = !!(c.term || c.note);
+  more.classList.toggle("has", filled);
+  more.textContent = filled ? "Term and notes ✓" : "Term and notes";
+  row.querySelector(".details").classList.toggle("filled", filled);
+}
+
+/* ---------- Totals ---------- */
+function tally(ids){
+  var r = {total:0, done:0, ip:0, waived:0, left:[]};
+  ids.forEach(function(id){
+    if (isLocked(id)) return;
+    var d = getDef(id), s = stat(id);
+    r.total += d.cr;
+    if (s === "done") r.done += d.cr;
+    else if (s === "waived") r.waived += d.cr;
+    else { if (s === "ip") r.ip += d.cr; r.left.push(id); }
+  });
+  return r;
+}
+function compute(){
+  var t = TRACKS[state.profile.track];
+  var genIds = []; GENED.forEach(function(g){ genIds = genIds.concat(g[2]); });
+  var gen = tally(genIds), core = tally(CORE);
+
+  var avail = ELECTIVES.filter(function(id){ return !isLocked(id); });
+  var doneEl = avail.filter(function(id){ return stat(id) === "done" || stat(id) === "waived"; })
+                    .sort(function(a,b){ return levelOf(C[a].code) - levelOf(C[b].code); });
+  var majorEl = doneEl.slice(0, ELECTIVES_NEEDED), spill = doneEl.slice(ELECTIVES_NEEDED);
+  var ipEl = avail.filter(function(id){ return stat(id) === "ip"; }).length;
+  var elDone = majorEl.filter(function(id){ return stat(id) === "done"; }).length * 3;
+  var elec = {total:27, done:elDone, count:majorEl.length, ip:Math.min(ipEl, Math.max(0, ELECTIVES_NEEDED - majorEl.length))*3,
+              need:Math.max(0, ELECTIVES_NEEDED - majorEl.length)};
+
+  var sci = tally(t.sci);
+  var freeIds = t.sci.concat(t.rec);
+  var free = {done:0, ip:0, up:0, total:30};
+  function addFree(code, cr, s){
+    if (s === "done") { free.done += cr; if (levelOf(code) >= 200) free.up += cr; }
+    else if (s === "ip") free.ip += cr;
+  }
+  freeIds.forEach(function(id){ addFree(C[id].code, C[id].cr, stat(id)); });
+  state.extra.forEach(function(x){ addFree(x.code, Number(x.cr)||0, x.status); });
+  spill.forEach(function(id){ addFree(C[id].code, 3, stat(id)); });
+  // Non-track sciences the student marked done anyway still count
+  ["BIO122","CHE131","CHE131L","CHE132","CHE132L","PSC241","PSC241L","PSC242","PSC242L","STAT231","HSA120","PSY351","SOC135"].forEach(function(id){
+    if (freeIds.indexOf(id) === -1) addFree(C[id].code, C[id].cr, stat(id));
+  });
+
+  var totalDone = gen.done + core.done + elec.done + free.done;
+  var totalIp = gen.ip + core.ip + elec.ip + free.ip;
+  return {t:t, gen:gen, core:core, elec:elec, sci:sci, free:free, totalDone:totalDone, totalIp:totalIp};
+}
+
+function progText(done, total, ip, extra){
+  return fmt(done) + " of " + fmt(total) + " credits" + (ip ? ' <small>' + fmt(ip) + " in progress</small>" : "") + (extra ? ' <small>' + extra + '</small>' : "");
+}
+
+function renderSummary(){
+  var r = compute();
+  document.getElementById("tDone").textContent = fmt(r.totalDone);
+  var left = Math.max(0, 120 - r.totalDone);
+  document.getElementById("tSub").textContent = (r.totalIp ? fmt(r.totalIp) + " credits in progress. " : "") +
+    (left ? fmt(left) + " credits to go." : "You have reached 120 credits. Make sure the list below is empty too.");
+
+  var free = Math.min(r.free.done, 30), freeIp = Math.min(r.free.ip, Math.max(0, 30 - free));
+  var segs = [
+    ["General Education", r.gen.done + r.gen.waived, r.gen.ip, r.gen.total],
+    ["Kinesiology core", r.core.done + r.core.waived, r.core.ip, r.core.total],
+    ["Kinesiology electives", r.elec.count*3, r.elec.ip, 27],
+    ["Free electives", free, freeIp, 30]
+  ];
+  document.getElementById("ledger").innerHTML = segs.map(function(s){
+    var d = Math.min(100, s[1]/s[3]*100), p = Math.min(100-d, s[2]/s[3]*100);
+    return '<div class="lseg" style="flex:'+s[3]+'"><div class="lfill d" style="width:'+d+'%"></div><div class="lfill p" style="width:'+p+'%"></div></div>';
+  }).join("");
+  document.getElementById("ledger").setAttribute("aria-label", segs.map(function(s){ return s[0] + " " + fmt(s[1]) + " of " + fmt(s[3]); }).join(", "));
+  document.getElementById("legend").innerHTML = segs.map(function(s){
+    return '<div style="flex:'+s[3]+'"><b>'+s[0]+'</b><span>'+fmt(s[1])+' of '+fmt(s[3])+'</span></div>';
+  }).join("");
+
+  // Section progress lines
+  var set = function(id, html){ var el = document.getElementById("prog-"+id); if (el) el.innerHTML = html; };
+  set("gened", progText(r.gen.done, r.gen.total, r.gen.ip, r.gen.waived ? fmt(r.gen.waived) + " waived" : ""));
+  set("core", progText(r.core.done, r.core.total, r.core.ip, r.core.waived ? fmt(r.core.waived) + " waived" : ""));
+  set("elec", r.elec.count + " of 9 electives" + (r.elec.ip ? ' <small>' + (r.elec.ip/3) + " in progress</small>" : ""));
+  set("sci", progText(r.sci.done, r.sci.total, r.sci.ip));
+  set("free", progText(Math.min(r.free.done,30), 30, r.free.ip));
+  var fs = document.getElementById("freeStats");
+  if (fs) {
+    var up = Math.min(r.free.up, 15);
+    fs.innerHTML =
+      '<div class="fs"><b>'+fmt(Math.min(r.free.done,30))+'</b> <span>of 30 free elective credits</span><div class="fbar"><i style="width:'+Math.min(100,r.free.done/30*100)+'%"></i><i class="p" style="width:'+Math.min(100-Math.min(100,r.free.done/30*100), r.free.ip/30*100)+'%"></i></div></div>' +
+      '<div class="fs"><b>'+fmt(up)+'</b> <span>of 15 credits at the 200 level or higher</span><div class="fbar"><i style="width:'+(up/15*100)+'%"></i></div></div>';
+  }
+  var sec = function(id, empty){ var el = document.getElementById("sec-"+id); if (el) el.classList.toggle("allmet", empty); };
+  sec("gened", !r.gen.left.length); sec("core", !r.core.left.length); sec("elec", !r.elec.need); sec("sci", !r.sci.left.length);
+  document.querySelectorAll("#main .group").forEach(function(g){
+    var rows = g.querySelectorAll(".row");
+    var met = g.querySelectorAll(".row.met").length;
+    g.classList.toggle("allmet", rows.length > 0 && met === rows.length);
+    g.classList.toggle("nonemet", met === 0);
+  });
+
+  // What's left
+  function chips(ids){
+    return '<div class="chips">' + ids.map(function(id){
+      var ip = stat(id) === "ip";
+      return '<button type="button" class="chip'+(ip?" ip":"")+'" data-go="'+id+'"><b>'+esc(codeOf(id))+'</b> '+esc(titleOf(id))+(ip?'<em>in progress</em>':"")+'</button>';
+    }).join("") + '</div>';
+  }
+  var L = "";
+  var line = function(title, body){ L += '<div class="lgroup"><h3>'+title+'</h3>'+body+'</div>'; };
+  if (r.gen.left.length) line("General Education", chips(r.gen.left));
+  if (r.core.left.length) line("Kinesiology core", chips(r.core.left));
+  if (r.elec.need) line("Kinesiology electives", '<p>' + r.elec.need + ' more from the elective list, 3 credits each' + (r.elec.ip ? ", " + (r.elec.ip/3) + " in progress now" : "") + '.</p>');
+  if (r.sci.left.length) line("Core sciences for " + r.t.short, chips(r.sci.left));
+  var fl = Math.max(0, 30 - r.free.done), ul = Math.max(0, 15 - r.free.up);
+  if (fl || ul) line("Free electives", '<p>' + (fl ? fmt(fl) + " more credits" : "Credits are covered") + (ul ? (fl ? ", and " : ", but you still need ") + fmt(ul) + " more at the 200 level or higher" : "") + '. Your core sciences count toward this.</p>');
+  if (!L) L = '<p class="alldone" style="padding-top:10px">Every requirement on this checklist is checked off. Ask your advisor to confirm with an official degree audit.</p>';
+  L += '<p class="overall">' + (left ? "Overall, " + fmt(left) + " more credits to reach the 120 you need to graduate." : "Overall, you have reached 120 credits.") + '</p>';
+  document.getElementById("leftList").innerHTML = L;
+}
+
+/* ---------- Events ---------- */
+var PASSING_RESET = function(c){ if (PASS[c.grade]) c.grade = ""; };
+
+document.addEventListener("change", function(e){
+  var el = e.target, row = el.closest && el.closest(".row");
+  if (row) {
+    var id = row.dataset.id, c = getC(id);
+    if (el.classList.contains("chk")) {
+      c.status = el.checked ? "done" : "none";
+      if (!el.checked) PASSING_RESET(c);
+    } else if (el.classList.contains("status")) {
+      c.status = el.value;
+      if (el.value !== "done") PASSING_RESET(c);
+    } else if (el.classList.contains("grade")) {
+      c.grade = el.value;
+      if (PASS[el.value]) c.status = "done";
+      else if ((el.value === "F" || el.value === "W") && c.status === "done") c.status = "none";
+    } else if (el.classList.contains("opt")) {
+      if (el.value === "") delete c.choice; else c.choice = Number(el.value);
+      if (id === "NUT") { ELECTIVES.forEach(updateRow); }
+    } else return;
+    allRowIds().forEach(updateRow);
+    changed();
+    return;
+  }
+  if (el.name === "track") { state.profile.track = el.value; renderAll(); changed(); return; }
+  if (el.name === "filter") { document.body.dataset.filter = el.value; return; }
+  if (el.id === "pPlan") { state.profile.plan = el.value; changed(); return; }
+  if (el.id === "fileIn" && el.files && el.files[0]) {
+    var fr = new FileReader();
+    fr.onload = function(){ restore(String(fr.result)); el.value = ""; };
+    fr.readAsText(el.files[0]);
+  }
+});
+
+document.addEventListener("input", function(e){
+  var el = e.target, row = el.closest && el.closest(".row");
+  if (row && (el.classList.contains("term") || el.classList.contains("note"))) {
+    var c = getC(row.dataset.id);
+    c[el.classList.contains("term") ? "term" : "note"] = el.value;
+    updateRow(row.dataset.id);
+    clearTimeout(saveTimer); saveTimer = setTimeout(save, 400);
+    return;
+  }
+  if (el.id === "pName") { state.profile.name = el.value; clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+  if (el.id === "pGrad") { state.profile.grad = el.value; clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+  if (el.id === "notes") { state.notes = el.value; clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+});
+
+document.addEventListener("click", function(e){
+  var el = e.target.closest ? e.target.closest("button") : null;
+  if (!el) return;
+  if (el.classList.contains("more")) {
+    var det = el.closest(".row").querySelector(".details");
+    det.hidden = !det.hidden; el.setAttribute("aria-expanded", String(!det.hidden));
+    if (!det.hidden) det.querySelector("input").focus();
+    return;
+  }
+  if (el.classList.contains("del")) {
+    var id = el.closest(".row").dataset.id;
+    state.extra = state.extra.filter(function(x){ return x.id !== id; });
+    renderAll(); changed(); return;
+  }
+  if (el.dataset.go) { goTo(el.dataset.go); return; }
+  if (el.id === "aBtn") { addExtra(); return; }
+});
+
+document.addEventListener("keydown", function(e){
+  if (e.key === "Enter" && e.target && (e.target.id === "aCode" || e.target.id === "aTitle" || e.target.id === "aCr")) { e.preventDefault(); addExtra(); }
+});
+
+function addExtra(){
+  var code = document.getElementById("aCode").value.trim();
+  var title = document.getElementById("aTitle").value.trim();
+  var cr = parseFloat(document.getElementById("aCr").value);
+  var msg = document.getElementById("aMsg");
+  if (!code) { msg.textContent = "Enter a course number, like SPA 111."; document.getElementById("aCode").focus(); return; }
+  if (!(cr > 0)) { msg.textContent = "Enter the number of credits."; document.getElementById("aCr").focus(); return; }
+  state.extra.push({id:"x_" + (state.nextX++), code:code.toUpperCase(), title:title, cr:cr, status:"none", grade:"", term:"", note:""});
+  renderAll(); changed();
+  var f = document.getElementById("aCode"); if (f) f.focus();
+}
+
+function goTo(id){
+  var row = document.getElementById("row-" + id);
+  if (!row) return;
+  if (document.body.dataset.filter === "done") {
+    document.body.dataset.filter = "all";
+    document.querySelector('input[name="filter"][value="all"]').checked = true;
+  }
+  row.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
+  row.classList.remove("flash"); void row.offsetWidth; row.classList.add("flash");
+  row.querySelector(".chk").focus({preventScroll:true});
+}
+
+/* ---------- Backup ---------- */
+var bMsg = document.getElementById("bMsg");
+function say(t, err){ bMsg.textContent = t; bMsg.className = "msg" + (err ? " err" : ""); }
+function backupText(){ return JSON.stringify({app:"wu-kne-checklist", v:1, exported:new Date().toISOString(), state:state}); }
+function restore(text){
+  try {
+    var obj = JSON.parse(text.trim());
+    var s = obj && obj.app === "wu-kne-checklist" ? obj.state : null;
+    if (!s || s.v !== 1) throw new Error("bad");
+    state = Object.assign(blank(), s);
+    if (!TRACKS[state.profile.track]) state.profile.track = "PT";
+    fillProfile(); renderAll(); save();
+    say("Checklist restored.");
+  } catch(err) { say("That does not look like a checklist backup. Check that you copied the whole code.", true); }
+}
+document.getElementById("bBackup").addEventListener("click", function(){
+  var p = document.getElementById("backup"); p.hidden = !p.hidden; this.setAttribute("aria-expanded", String(!p.hidden));
+});
+
+document.getElementById("bCopy").addEventListener("click", function(){
+  var text = backupText(), box = document.getElementById("codeBox");
+  var fallback = function(){ box.value = text; box.focus(); box.select(); say("Your backup code is in the box. Copy it and keep it somewhere safe, like an email to yourself."); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ say("Backup code copied. Paste it somewhere safe, like an email to yourself."); }, fallback);
+  } else fallback();
+});
+document.getElementById("bRestore").addEventListener("click", function(){
+  var v = document.getElementById("codeBox").value;
+  if (!v.trim()) { say("Paste a backup code in the box first.", true); return; }
+  restore(v);
+});
+var armTimer = null;
+document.getElementById("bReset").addEventListener("click", function(){
+  var b = this;
+  if (!b.classList.contains("armed")) {
+    b.classList.add("armed"); b.textContent = "Click again to clear everything";
+    armTimer = setTimeout(function(){ b.classList.remove("armed"); b.textContent = "Clear my checklist"; }, 4000);
+    return;
+  }
+  clearTimeout(armTimer); b.classList.remove("armed"); b.textContent = "Clear my checklist";
+  state = blank(); fillProfile(); renderAll(); save(); say("Checklist cleared.");
+});
+
+var downloads = null;
+/* Standard browser download, used when the page runs outside Claude (for example on GitHub Pages). */
+function webSave(filename, data, type){
+  var blob = new Blob([data], {type: type || "application/octet-stream"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  return Promise.resolve();
+}
+var inClaude = !!(window.claude && typeof window.claude.use === "function");
+if (!inClaude) { downloads = {save: function(o){ return webSave(o.filename, o.data, /\.html$/.test(o.filename) ? "text/html" : "application/json"); }}; document.getElementById("bDownload").hidden = false; }
+try {
+  if (window.claude && typeof window.claude.use === "function") {
+    window.claude.use("downloads").then(function(d){
+      downloads = d;
+      if (d) document.getElementById("bDownload").hidden = false;
+    }).catch(function(){});
+  }
+} catch(e) {}
+document.getElementById("bDownload").addEventListener("click", function(){
+  if (!downloads) return;
+  var nm = (state.profile.name || "my").trim().replace(/[^A-Za-z0-9]+/g,"_");
+  downloads.save({filename: nm + "_kinesiology_checklist.json", data: backupText()})
+    .then(function(){ say("Backup file saved. Load it with Load a backup file on any device."); })
+    .catch(function(err){
+      var code = err && err.code;
+      if (code === "declined") return;
+      if (code === "rate_limited") { say("A save prompt is already open. Try again in a moment.", true); return; }
+      document.getElementById("bDownload").hidden = true;
+      say("Downloads are not available here. Use Copy backup code instead.", true);
+    });
+});
+
+
+/* ---------- Printable copy ---------- */
+function statusLabel(s){ for (var i=0;i<STATUS.length;i++) if (STATUS[i][0]===s) return STATUS[i][1]; return "Not started"; }
+function printRows(ids){
+  return ids.map(function(id){
+    var d = getDef(id), c = peekC(id), s = c.status || "none";
+    var mark = isMet(s) ? "&#10003;" : s === "ip" ? "&#9680;" : "";
+    return '<tr class="'+(isMet(s)?"met":"")+'"><td class="mk">'+mark+'</td><td><b>'+esc(codeOf(id))+'</b> '+esc(titleOf(id))+
+      (c.note ? '<div class="nt">'+esc(c.note)+'</div>' : '')+'</td><td class="n">'+fmt(d.cr)+'</td><td>'+esc(statusLabel(s))+'</td><td>'+esc(c.grade||"")+'</td><td>'+esc(c.term||"")+'</td></tr>';
+  }).join("");
+}
+function printTable(title, sub, ids){
+  if (!ids.length) return "";
+  return '<h3>'+esc(title)+(sub?' <span>'+esc(sub)+'</span>':'')+'</h3><table><colgroup><col class="c1"><col><col class="c3"><col class="c4"><col class="c5"><col class="c6"></colgroup><thead><tr><th></th><th>Course</th><th class="n">Cr</th><th>Status</th><th>Grade</th><th>Term</th></tr></thead><tbody>'+printRows(ids)+'</tbody></table>';
+}
+function buildPrintable(){
+  var r = compute(), t = r.t, P = state.profile;
+  var left = Math.max(0, 120 - r.totalDone);
+  var h = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Kinesiology Degree Checklist'+(P.name?' - '+esc(P.name):'')+'</title><style>'+
+    'body{font:12px/1.4 Arial,Helvetica,sans-serif;color:#17231D;background:#fff;margin:24px auto;max-width:800px;padding:0 16px}'+
+    'h1{font-size:22px;margin:0 0 2px}h2{font-size:16px;margin:20px 0 4px;border-bottom:2px solid #1D5A3F;padding-bottom:3px}'+
+    'h3{font-size:13px;margin:12px 0 4px}h3 span{font-weight:normal;color:#5B6B63}.sub{color:#5B6B63;margin:0 0 10px}'+
+    'table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:fixed}col.c1{width:22px}col.c3{width:36px}col.c4{width:96px}col.c5{width:56px}col.c6{width:96px}th,td{text-align:left;padding:4px 6px;border-bottom:1px solid #D7DFDA;vertical-align:top}'+
+    'th{font-size:11px;color:#5B6B63}.n{text-align:right;white-space:nowrap}.mk{width:16px;color:#1D5A3F;font-weight:bold}tr.met{background:#EEF5F1}'+
+    '.nt{color:#5B6B63;font-size:11px;margin-top:2px}.tot{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.tot div{border:1px solid #D7DFDA;border-radius:6px;padding:6px 10px}'+
+    '.tot b{display:block;font-size:15px}.left li{margin:2px 0}.tip{background:#F7EFD6;border:1px solid #D9B44A;border-radius:6px;padding:8px 10px;margin-bottom:14px}'+
+    '.notes{white-space:pre-wrap;border:1px solid #D7DFDA;border-radius:6px;padding:8px}.foot{color:#5B6B63;font-size:10px;margin-top:20px}'+
+    'tr{break-inside:avoid}@media print{.tip{display:none}body{margin:0 auto}}'+
+    '</style></head><body>'+
+    '<div class="tip">Your print window should open on its own. If it does not, press Ctrl+P (Cmd+P on a Mac). To make a PDF, choose Save as PDF as the printer.</div>'+
+    '<h1>Kinesiology Degree Checklist</h1><p class="sub">Wilberforce University, B.S. in Kinesiology. '+
+    esc(P.name || "Student name not entered")+'. '+esc(t.name)+' track, '+esc(P.plan||"4")+'-year plan'+(P.grad?'. Expected graduation '+esc(P.grad):'')+
+    '. Printed '+esc(new Date().toLocaleDateString([], {month:"long", day:"numeric", year:"numeric"}))+'.</p>'+
+    '<div class="tot"><div><b>'+fmt(r.totalDone)+' of 120</b>credits done</div><div><b>'+fmt(r.totalIp)+'</b>credits in progress</div><div><b>'+fmt(left)+'</b>credits to go</div>'+
+    '<div><b>'+fmt(r.gen.done+r.gen.waived)+' of '+fmt(r.gen.total)+'</b>General Education</div><div><b>'+fmt(r.core.done+r.core.waived)+' of '+fmt(r.core.total)+'</b>Kinesiology core</div>'+
+    '<div><b>'+r.elec.count+' of 9</b>Kinesiology electives</div><div><b>'+fmt(Math.min(r.free.done,30))+' of 30</b>Free electives ('+fmt(Math.min(r.free.up,15))+' of 15 at 200 level or higher)</div></div>';
+
+  var L = [];
+  if (r.gen.left.length) L.push('<li><b>General Education</b> '+r.gen.left.map(function(id){return esc(codeOf(id)+" "+titleOf(id));}).join("; ")+'</li>');
+  if (r.core.left.length) L.push('<li><b>Kinesiology core</b> '+r.core.left.map(function(id){return esc(codeOf(id)+" "+titleOf(id));}).join("; ")+'</li>');
+  if (r.elec.need) L.push('<li><b>Kinesiology electives</b> '+r.elec.need+' more from the elective list</li>');
+  if (r.sci.left.length) L.push('<li><b>Core sciences for '+esc(t.short)+'</b> '+r.sci.left.map(function(id){return esc(codeOf(id)+" "+titleOf(id));}).join("; ")+'</li>');
+  var fl = Math.max(0, 30 - r.free.done), ul = Math.max(0, 15 - r.free.up);
+  if (fl || ul) L.push('<li><b>Free electives</b> '+fmt(fl)+' more credits'+(ul?', including '+fmt(ul)+' at the 200 level or higher':'')+'</li>');
+  h += '<h2>What\'s left</h2>'+(L.length?'<ul class="left">'+L.join("")+'</ul>':'<p>Every requirement on this checklist is checked off.</p>');
+
+  h += '<h2>General Education</h2>';
+  GENED.forEach(function(g){ h += printTable(g[0]+". "+g[1], "", g[2]); });
+  h += '<h2>Kinesiology core</h2>'+printTable("Required core","25 credits",CORE);
+  var elecUsed = ELECTIVES.filter(function(id){ return !isLocked(id) && stat(id) !== "none"; });
+  h += '<h2>Kinesiology electives</h2>'+(elecUsed.length ? printTable("Electives taken or planned", r.elec.count+" of 9 done", elecUsed) : '<p>No electives marked yet.</p>');
+  h += '<h2>Core sciences, '+esc(t.name)+' track</h2>'+printTable("Required for this track","",t.sci);
+  var recUsed = t.rec;
+  if (recUsed.length) h += printTable("Recommended for "+t.short+" applicants","",recUsed);
+  var extraIds = state.extra.map(function(x){ return x.id; });
+  h += '<h2>Free electives, other courses</h2>'+(extraIds.length ? printTable("My other courses","",extraIds) : '<p>No other courses added.</p>');
+  if (state.notes && state.notes.trim()) h += '<h2>Notes for my advisor</h2><div class="notes">'+esc(state.notes)+'</div>';
+  h += '<p class="foot">This checklist is a planning tool. Your official degree audit comes from the Registrar\'s Office. Questions? fdelgado@wilberforce.edu</p>';
+  h += '<script>window.addEventListener("load",function(){setTimeout(function(){try{window.print();}catch(e){}},400);});<\/script></body></html>';
+  return h;
+}
+document.getElementById("bPrint").addEventListener("click", function(){
+  if (!inClaude) {
+    var w = null; try { w = window.open("", "_blank"); } catch(e) {}
+    if (w) { w.document.open(); w.document.write(buildPrintable()); w.document.close(); return; }
+  }
+  if (!downloads) { try { window.print(); } catch(e) {} return; }
+  var nm = (state.profile.name || "my").trim().replace(/[^A-Za-z0-9]+/g,"_");
+  downloads.save({filename: nm + "_kinesiology_checklist_printable.html", data: buildPrintable()})
+    .then(function(){ say("Printable copy saved. Open the file and your print window will come up. Choose Save as PDF to make a PDF."); openBackupMsg(); })
+    .catch(function(err){
+      var code = err && err.code;
+      if (code === "declined") return;
+      if (code === "rate_limited") { say("A save prompt is already open. Try again in a moment.", true); openBackupMsg(); return; }
+      try { window.print(); } catch(e) {}
+    });
+});
+function openBackupMsg(){ var p = document.getElementById("backup"); if (p.hidden) { p.hidden = false; document.getElementById("bBackup").setAttribute("aria-expanded","true"); } }
+
+/* ---------- Init ---------- */
+function fillProfile(){
+  document.getElementById("pName").value = state.profile.name || "";
+  document.getElementById("pGrad").value = state.profile.grad || "";
+  document.getElementById("pPlan").value = state.profile.plan || "4";
+  var r = document.querySelector('input[name="track"][value="'+state.profile.track+'"]');
+  if (r) r.checked = true;
+}
+(function terms(){
+  var y = new Date().getFullYear(), o = "";
+  for (var i = y - 3; i <= y + 4; i++) ["Winter","Spring","Summer","Fall"].forEach(function(s){ o += '<option value="'+s+" "+i+'">'; });
+  document.getElementById("terms").innerHTML = o;
+})();
+fillProfile();
+renderAll();
+setSaved();
+function flush(){ if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; save(); } }
+window.addEventListener("pagehide", flush);
+document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "hidden") flush(); });
+})();
+</script>
+</body>
+</html>
